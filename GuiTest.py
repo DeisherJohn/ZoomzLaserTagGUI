@@ -321,7 +321,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 			if kill > 0:
 				if victim[kill] == victim[kill - 1] and abs(timeDeath[kill - 1]) < 100000:
 					#double kill found
-					print("found Double kill")
 					continue #move to next loop
 				#Need to work out how to kill base
 				if victim[kill] > largestGunNumber:
@@ -344,6 +343,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		sortedList.append((killList[gun], gun))
 
 	sortedList.sort()
+	print(sortedList)
 	drawNormalText(_window, "- Top Players -", defFont, 20,300 + _offsetX,75 + _offsetY)
 	for x in range(5):
 		topGuns = str(x+1)  + ' : ' + str(int(sortedList[x][0]))
@@ -364,6 +364,9 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 
 	pass
 
+def displayTopPlayers():
+
+	pass
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -449,7 +452,7 @@ def scoreScreen(_window = None):
 				mainScreen()
 
 		scorePage.fill(white)
-		drawNormalText(scorePage, "Score", defFont,  30, 300, 25)
+		drawNormalText(scorePage, "END OF GAME", defFont,  30, 300, 25)
 		menuFont = 12
 
 		#end game
