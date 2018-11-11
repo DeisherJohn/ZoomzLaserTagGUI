@@ -315,6 +315,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 			if kill > 0:
 				if victim[kill] == victim[kill - 1] and abs(timeDeath[kill - 1]) < 100000:
 					#double kill found
+					print("found Double kill")
 					continue #move to next loop
 				#Need to work out how to kill base
 				if victim[kill] > largestGunNumber:
