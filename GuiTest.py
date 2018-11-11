@@ -604,6 +604,7 @@ def main():
 	args.channel=int(12)
 
 	global packetHandler
+	global snifferDev
 	
 	#TODO: CHECK SNIFFER LOADING
 	#Need to start packet Handeler here?
