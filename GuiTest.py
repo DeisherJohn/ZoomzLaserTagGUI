@@ -239,7 +239,7 @@ def AR():
 		package = ['\x06', '\xFF', '\x00', '\x02', '\x04', '\x00', '\x05', '\x0F', '\xC8', '\x01', '\x03', '\x02', '\x04', '\x01', '\x14', '\x01', '\x01', '\x00', '\x00', '\x00', '\x00']
 	
 	pkg = ''.join(package)
-	#radioProgram(pkg)
+	radioProgram(pkg)
 
 	pass
 
@@ -251,7 +251,7 @@ def SUB():
 	else: 
 		package = ['\x06', '\xFF', '\x02', '\x02', '\x04', '\x00', '\x05', '\x14', '\xC8', '\x02', '\x03', '\x06', '\x03', '\x01', '\x14', '\x00', '\x0B', '\x00', '\x00', '\x00', '\x00']
 	pkg = ''.join(package)
-	#programGun(pkg)
+	programGun(pkg)
 
 def SNIPER():
 	global silencer
@@ -261,7 +261,7 @@ def SNIPER():
 	else: 
 		package = ['\x06', '\xFF', '\x02', '\x02', '\x04', '\x00', '\x0A', '\x05', '\xC8', '\x00', '\x03', '\x00', '\x05', '\x01', '\x14', '\x00', '\xFB', '\x00', '\x00', '\x00', '\x00']
 	pkg = ''.join(package)
-	#programGun(pkg)
+	programGun(pkg)
 	pass
 
 def LMG():
@@ -272,14 +272,14 @@ def LMG():
 	else: 
 		package = ['\x06', '\xFF', '\x02', '\x02', '\x04', '\x00', '\x04', '\x32', '\xC8', '\x02', '\x03', '\x03', '\x08', '\x01', '\x14', '\x00', '\x2A', '\x00', '\x00', '\x00', '\x00']
 	pkg = ''.join(package)
-	#programGun(pkg)
+	programGun(pkg)
 	pass
 
 def TDM():
 	global setNewGame
 	command = ['\x07', '\xFF', '\x1C', '\x00', '\x00', '\x00', '\x00', '\x45', '\x00', '\x00', '\x00', '\x00', '\x1A', '\x00', '\x03', '\x05', '\x82', '\x00', '\x00', '\x00', '\x00']
 	cmd = ''.join(command)
-	#programGun(cmd, setNewGame)
+	programGun(cmd, setNewGame)
 	pass
 
 def FFA():
@@ -287,7 +287,7 @@ def FFA():
 
 	command = ['\x07', '\xFF', '\x1C', '\x00', '\x00', '\x00', '\x04', '\x45', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x03', '\x05', '\x6C', '\x00', '\x00', '\x00', '\x00']
 	cmd = ''.join(command)
-	#programGun(cmd, setNewGame)
+	programGun(cmd, setNewGame)
 	pass
 
 def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
@@ -339,7 +339,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		sortedList.append((killList[gun], gun))
 
 	sortedList.sort(reverse = True)
-	print(sortedList)
 	drawNormalText(_window, "- Top Players -", defFont, 20,300 + _offsetX,75 + _offsetY)
 	for x in range(5):
 		topGuns = str(x+1)  + ' : ' + str(int(sortedList[x][1])) + ' with: ' + str(int(sortedList[x][0]))
