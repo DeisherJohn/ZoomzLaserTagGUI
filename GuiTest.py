@@ -302,7 +302,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		packet = packetHandler.captures[0]
 		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50 and len(packet.frame.msdu) > 4:
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
-		del packet
+		del packetHandler.captures[0]
 
 	print("parsed packet.CapturedFrame")
 	if len(packetData) > 0:
