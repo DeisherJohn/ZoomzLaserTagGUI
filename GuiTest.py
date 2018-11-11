@@ -295,7 +295,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 	packetData = []
 
 	# Need to have packet captures
-	print(packetHandler.captures)
 	for _i in range(len(packetHandler.captures)):
 		packet = packetHandler.captures[0]
 		if len(packet.frame.msdu) < 5:
@@ -468,6 +467,29 @@ def gameTime(_window = None):
 	global killMatrix
 	global killList
 
+	#try opening sniffer here
+	args = arg_parser()
+	args.channel=int(12)
+
+	global packetHandler
+
+	packetHandler = PacketHandler()
+	packetHandler.enable()
+
+	if args.annotation is not None:
+		packetHandler.setAnnotation(args.annotation)
+
+	handlers = [packetHandler]
+
+	def handlerDispatcher(timestamp, macPDU):
+		if len(macPDU) > 0:
+			packet = SniffedPacket(macPDU, timestamp)
+			for handler in handlers:
+				handler.handleSniffedPacket(packet)
+
+	snifferDev = CC2531EMK(handlerDispatcher, args.channel)
+	snifferDev.start()
+	#end here
 
 	killList = np.zeros(30)
 
@@ -590,27 +612,7 @@ def main():
 
 	#TODO: CHECK SNIFFER LOADING
 	#Need to start packet Handeler here?
-	args = arg_parser()
-	args.channel=int(12)
-
-	global packetHandler
-
-	packetHandler = PacketHandler()
-	packetHandler.enable()
-
-	if args.annotation is not None:
-		packetHandler.setAnnotation(args.annotation)
-
-	handlers = [packetHandler]
-
-	def handlerDispatcher(timestamp, macPDU):
-		if len(macPDU) > 0:
-			packet = SniffedPacket(macPDU, timestamp)
-			for handler in handlers:
-				handler.handleSniffedPacket(packet)
-
-	snifferDev = CC2531EMK(handlerDispatcher, args.channel)
-	snifferDev.start()
+	
 
 	while not exitGame:
 		exitGame = mainScreen(None)
