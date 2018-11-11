@@ -116,7 +116,7 @@ def radioProgram(pkg, newStartGame = False):
 	pref='\x40\x06\x00'
 
 	if len(gunList) == 0: 
-		gunList=range(1,largestGunNumber)
+		gunList=range(1,largestGunNumber-1)
 	dest = ['\x00'+str(unichr(int(gun))) for gun in gunList]
 
 	if type(pkg) != list: pkg=[pkg]
@@ -304,7 +304,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50:
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packetHandler.captures[0]
-		
+
 	if len(packetData) > 0:
 		print(packetData)
 		packetData.sort()
@@ -477,7 +477,6 @@ def gameTime(_window = None):
 
 
 	snifferDev.start()
-	#end here
 
 	killList = np.zeros(30)
 
