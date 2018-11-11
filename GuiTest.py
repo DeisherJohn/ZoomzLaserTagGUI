@@ -313,6 +313,11 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		print("looking at kill loop")
 		for kill in range(len(victim)):
 			if kill > 0:
+				print("Killer:"  + str(killer[kill]))
+				print("Victim:"  + str(victim[kill]))
+				if kill < len(victim):
+					print("Diff Time:"  + str(timeDeath[kill]))
+
 				if victim[kill] == victim[kill - 1] and abs(timeDeath[kill - 1]) < 100000:
 					#double kill found
 					print("found Double kill")
