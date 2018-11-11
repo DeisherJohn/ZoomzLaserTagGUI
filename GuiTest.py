@@ -304,7 +304,9 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		del packetHandler.captures[0]
 
 	if len(packetData) > 0:
+		print(packetData)
 		packetData.sort()
+		print(packetData)
 
 		timeDeath = np.diff(np.array(packetData)[:,2]) # time between kills
 		killer = np.array(packetData)[:,1] #array for gun killers
