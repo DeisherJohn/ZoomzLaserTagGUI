@@ -451,6 +451,7 @@ def scoreScreen(_window = None):
 
 		#end game
 		pyGameButton(scorePage, "Return to Main", menuFont+4, 4, red, brightRed, 450, 225, button_w*1.3, button_h, mainScreen)
+		time.sleep(.2)
 		scoreDisplay(scorePage, 0, -20)
 
 		pygame.display.update()
@@ -500,7 +501,7 @@ def gameTime(_window = None):
 		drawNormalText(gameDisplay, passString, defFont, 20,300,50)
 		#end game
 		pyGameButton(gameDisplay, "End Game", menuFont+4, 4, red, brightRed, 450, 225, button_w, button_h, scoreScreen)
-		time.sleep(.5)
+		time.sleep(.2)
 		scoreDisplay(gameDisplay)
 		#parse score and do simple display of team on team and best 5 guns
 
