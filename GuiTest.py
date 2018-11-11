@@ -437,6 +437,8 @@ def scoreScreen(_window = None):
 	pygame.display.set_caption(companyName)
 	stopGame = False
 
+	snifferDev.end()
+
 	endGame()
 	displayScore = True
 	while not stopGame:
