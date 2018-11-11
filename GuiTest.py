@@ -119,7 +119,7 @@ def radioProgram(pkg, newGame = False):
 	if type(pkg) != list: pkg=[pkg]
 
 	for i in range(sendTries):
-		for c1 in code:
+		for c1 in pkg:
 			for gun in dest:
 				x = xbee.send('tx', dest_addr=gun, data=pref)
 				x = xbee.send('tx', dest_addr=gun, data=c1)
