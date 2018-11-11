@@ -473,10 +473,6 @@ def gameTime(_window = None):
 	global packetHandler
 	global killMatrix
 	global killList
-	global snifferDev
-
-
-	snifferDev.start()
 
 	killList = np.zeros(30)
 
@@ -621,6 +617,7 @@ def main():
 				handler.handleSniffedPacket(packet)
 
 	snifferDev = CC2531EMK(handlerDispatcher, args.channel)
+	snifferDev.start()
 
 	while not exitGame:
 		exitGame = mainScreen(None)
