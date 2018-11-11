@@ -295,6 +295,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 	packetData = []
 
 	# Need to have packet captures
+	print(packetHandler.captures)
 	for _i in range(len(packetHandler.captures)):
 		packet = packetHandler.captures[0]
 		if len(packet.frame.msdu) < 5:
@@ -303,7 +304,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packetHandler.captures[0]
 
-	print(packetData)
 	if len(packetData) > 0:
 		packetData.sort()
 
