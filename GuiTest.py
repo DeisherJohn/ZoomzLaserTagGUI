@@ -290,6 +290,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 
 	global killMatrix
 	global killList
+	global packetHandler
 	_blueScore = 0
 	_redScore = 0
 	packetData = []
