@@ -36,8 +36,6 @@ from pyCCsnifferOriginal import CapturedFrame
 from pyCCsnifferOriginal import CustomAssertFrame
 '''
 
-
-
 #inits
 
 
@@ -73,21 +71,27 @@ killList = np.zeros(30)
 #display variables
 disp_height = 600
 disp_width = 300
-window_cap = "Zoomz Laser Tag Admin Control"
 button_w = 120
 button_h = 60
-
-
-
 defFont = 'freesansbold.ttf'
 
+#company data
+companyName = "Zoomz Paintball LLC"
+largestGunNumber = 28
+sendTries = 3
 
+#radio information
+radioTarget = '/dev/ttyUSB0'
+radioBaud = 19200
+
+#init clock
 clock = pygame.time.Clock()
 
 
 #colors
 black = (0,0,0)
 white = (255,255,255)
+
 red = (200,0,0)
 green = (0,200,0)
 blue = (0,0,200)
@@ -100,23 +104,27 @@ brightBlue = (0,0,255)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RADIO FUNCTIONS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def sendPacket(_destAddr, _packetPref, _packetData = None):
+	#ser = serial.Serial(radioTarget, redioBuad)
+	xbee = XBee(serial.Serial(radioTarget, redioBuad))
 
+
+	pass
 def radioProgram(pkg, newGame = False):
 	#send code package over radio
 
 	global gunList
-	ser = serial.Serial('/dev/ttyUSB0', 19200)
-	xbee = XBee(ser)
+	xbee = XBee(serial.Serial(radioTarget, radioBaud))
 
 	pref='\x40\x06\x00'
 
 	if len(gunList) == 0: 
-		gunList=range(1,28)
+		gunList=range(1,largestGunNumber)
 	dest = ['\x00'+str(unichr(int(gun))) for gun in gunList]
 
 	if type(pkg) != list: pkg=[pkg]
 
-	for i in range(3):
+	for i in range(sendTries):
 		for c1 in code:
 			for gun in dest:
 				x = xbee.send('tx', dest_addr=gun, data=pref)
@@ -127,10 +135,11 @@ def radioProgram(pkg, newGame = False):
 		time.sleep(0.3)
 		newGame(gunList) 
 
+		pass
+
 def endGame():
 	"""list of gun numbers (integers); if this is empty, then new game all guns"""
-	ser = serial.Serial('/dev/ttyUSB0',19200)
-	xbee = XBee(ser)
+	xbee = XBee(serial.Serial(radioTarget, radioBaud))
 	global gunList
 
 	if len(gunList) == 0: 
@@ -142,10 +151,30 @@ def endGame():
 
 	pref='\x40\x03\x07' # end game code
 
-	for i in range(3):
+	for i in range(sendTries):
 		for gun in dest:
 			x = xbee.send('tx', dest_addr=gun, data=pref)
 		time.sleep(0.5)
+	pass
+
+def newGame():
+	xbee = XBee(serial.Serial(radioTarget, radioBaud))
+	if len(gunList) == 0: 
+		dest=['\xff\xff']
+		# dest=['\x00'+str(unichr(kk)) for kk in range(1,27) ]
+	else:
+		dest=[]
+		for ii in gunList:
+			dest.append('\x00'+str(unichr(int(ii)))) # append gun number
+
+	pref='\x40\x03\x05' # new game code
+
+	for ii in range(3):
+		for gun in dest:
+			x = xbee.send('tx', dest_addr=gun, data=pref)
+		time.sleep(0.8)
+	pass
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTIONS
@@ -292,7 +321,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 					#double kill found
 					continue #move to next loop
 				''' Need to work out how to kill base
-				if victim[kill] > 30:
+				if victim[kill] > largestGunNumber:
 					#this is a base kill
 					self.baseKill = True
 					if victim[kill] % 2 == 0:
@@ -302,7 +331,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 						self.winner = 'blue'
 					continue
 				'''
-
+largestGunNumber
 			#add kill to the passed in data Structs
 			killMatrix[int(victim[kill]), int(killer[kill])] += 1
 			killList[int(killer[kill])] += 1
@@ -342,7 +371,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 def gunMenu(_window = None):
 	#make a new screen?
 	gunScreen = pygame.display.set_mode((disp_height,disp_width))
-	pygame.display.set_caption("Gun Mode Select")
+	pygame.display.set_caption(companyName)
 
 	settingGuns = True
 
@@ -374,7 +403,7 @@ def gunMenu(_window = None):
 
 def gameMenu(_window = None):
 	gameScreen = pygame.display.set_mode((disp_height,disp_width))
-	pygame.display.set_caption("Game Mode Select")
+	pygame.display.set_caption(companyName)
 	global setNewGame
 	settingGame = True
 
@@ -406,7 +435,7 @@ def gameMenu(_window = None):
 
 def scoreScreen(_window = None):
 	scorePage = pygame.display.set_mode((disp_height,disp_width))
-	pygame.display.set_caption(window_cap)
+	pygame.display.set_caption(companyName)
 	stopGame = False
 
 	while not stopGame:
@@ -431,7 +460,7 @@ def scoreScreen(_window = None):
 
 def gameTime(_window = None):
 	gameDisplay = pygame.display.set_mode((disp_height,disp_width))
-	pygame.display.set_caption(window_cap)
+	pygame.display.set_caption(companyName)
 
 	global timer
 	global packetHandler
@@ -480,7 +509,7 @@ def gameTime(_window = None):
 
 def StartGame(_window = None):
 	startScreen = pygame.display.set_mode((disp_height,disp_width))
-	pygame.display.set_caption(window_cap)
+	pygame.display.set_caption(companyName)
 	global timer
 	settingUp = True
 	timer = 5
@@ -507,7 +536,7 @@ def StartGame(_window = None):
 
 def mainScreen(_window = None):
 	gameScreen = pygame.display.set_mode((disp_height,disp_width))
-	pygame.display.set_caption(window_cap)
+	pygame.display.set_caption(companyName)
 
 	global killMatrix
 	killMatrix = np.zeros((30,30))
