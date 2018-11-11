@@ -436,12 +436,12 @@ def gameMenu(_window = None):
 
 def scoreScreen(_window = None):
 	global snifferDev
-	
+
 	scorePage = pygame.display.set_mode((disp_height,disp_width))
 	pygame.display.set_caption(companyName)
 	stopGame = False
 
-	snifferDev.end()
+	snifferDev.stop()
 
 	endGame()
 	displayScore = True
