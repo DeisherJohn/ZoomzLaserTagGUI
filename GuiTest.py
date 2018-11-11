@@ -296,12 +296,14 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 	_redScore = 0
 	packetData = []
 	# Need to have packet captures
+	print("start of scoring")
 	while packetHandler.captures:
 		packet = packetHandler.captures[0]
 		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50 and len(packet.frame.msdu) > 4:
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packet
 
+	print("parsed packet.CapturedFrame")
 	if len(packetData) > 0:
 		packetData.sort()
 
@@ -309,6 +311,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		killer = np.array(packetData)[:,1] #array for gun killers
 		victim = np.array(packetData)[:,0] # array of guns killed
 
+		print("looking at kill loop")
 		for kill in len(victim):
 			if kill > 0:
 				if victim[kill] == victim[kill - 1] and abs(timeDeath[kill - 1]) < 100000:
@@ -327,7 +330,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 			#add kill to the passed in data Structs
 			killMatrix[int(victim[kill]), int(killer[kill])] += 1
 			killList[int(killer[kill])] += 1
-
+		print("left kill loop")
 	#display the top players
 	sortedList = []
 	for gun in range(len(killList)):
