@@ -1,4 +1,4 @@
-
+#!/usr/bin/env sudo python
 import pygame
 import time
 
