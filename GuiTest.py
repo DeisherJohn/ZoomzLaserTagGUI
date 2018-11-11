@@ -302,11 +302,12 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 	for _i in range(len(packetHandler.captures)):
 		packet = packetHandler.captures[0]
 		if len(packet.frame.msdu) < 5:
-			continue
+			contiue
 		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50:
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packetHandler.captures[0]
 
+	print(packetData)
 	if len(packetData) > 0:
 		packetData.sort()
 
@@ -315,6 +316,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		victim = np.array(packetData)[:,0] # array of guns killed
 
 		for kill in range(len(killer)):
+			print(kill)
 			if kill > 0:
 				if victim[kill] == victim[kill - 1] and abs(timeDeath[kill - 1]) < 100000:
 					#double kill found
@@ -377,6 +379,7 @@ def gunMenu(_window = None):
 
 	while settingGuns:
 		for event in pygame.event.get():
+			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 				mainScreen()
@@ -408,6 +411,7 @@ def gameMenu(_window = None):
 
 	while settingGame:
 		for event in pygame.event.get():
+			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 				mainScreen()
@@ -440,6 +444,7 @@ def scoreScreen(_window = None):
 	displayScore = True
 	while not stopGame:
 		for event in pygame.event.get():
+			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 				mainScreen()
@@ -478,6 +483,7 @@ def gameTime(_window = None):
 	startTime = pygame.time.get_ticks()
 	while not stopGame:
 		for event in pygame.event.get():
+			print(event)
 			if event.type == pygame.QUIT:
 				scoreScreen()
 
@@ -499,7 +505,7 @@ def gameTime(_window = None):
 		drawNormalText(gameDisplay, passString, defFont, 20,300,50)
 		#end game
 		pyGameButton(gameDisplay, "End Game", menuFont+4, 4, red, brightRed, 450, 225, button_w, button_h, scoreScreen)
-		time.sleep(.5)
+		time.sleep(.2)
 		scoreDisplay(gameDisplay)
 		#parse score and do simple display of team on team and best 5 guns
 
@@ -516,6 +522,7 @@ def StartGame(_window = None):
 	timer = 5
 	while settingUp:
 		for event in pygame.event.get():
+			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 		startScreen.fill(white)
@@ -548,6 +555,7 @@ def mainScreen(_window = None):
 	main = True
 	while main:
 		for event in pygame.event.get():
+			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 				return True
