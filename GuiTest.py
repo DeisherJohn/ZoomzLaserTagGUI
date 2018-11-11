@@ -342,7 +342,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 	print(sortedList)
 	drawNormalText(_window, "- Top Players -", defFont, 20,300 + _offsetX,75 + _offsetY)
 	for x in range(5):
-		topGuns = str(x+1)  + ' : ' + str(int(sortedList[x][0]))
+		topGuns = str(x+1)  + ' : ' + str(int(sortedList[x]))
 		drawNormalText(_window, topGuns, defFont, 20,300 + _offsetX,125+(25*x) + _offsetY)
 	#end Scoreing
 
