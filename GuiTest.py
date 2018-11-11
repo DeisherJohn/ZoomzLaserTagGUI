@@ -331,7 +331,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 						self.winner = 'blue'
 					continue
 				'''
-largestGunNumber
 			#add kill to the passed in data Structs
 			killMatrix[int(victim[kill]), int(killer[kill])] += 1
 			killList[int(killer[kill])] += 1
