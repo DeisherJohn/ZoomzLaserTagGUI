@@ -62,8 +62,6 @@ timer = 5
 global packetHandler
 packetHandler = None
 
-global snifferDev
-
 global killMatrix
 killMatrix = np.zeros((30,30))
 
@@ -434,8 +432,6 @@ def gameMenu(_window = None):
 	pass
 
 def scoreScreen(_window = None):
-	global snifferDev
-
 	scorePage = pygame.display.set_mode((disp_height,disp_width))
 	pygame.display.set_caption(companyName)
 	stopGame = False
@@ -596,8 +592,6 @@ def main():
 	args.channel=int(12)
 
 	global packetHandler
-	global snifferDev
-
 	#TODO: CHECK SNIFFER LOADING
 	#Need to start packet Handeler here?
 	packetHandler = PacketHandler()
