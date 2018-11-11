@@ -24,6 +24,8 @@ import usb.util
 import pdb
 
 
+from xbee import XBee
+
 import ieee15dot4 as ieee
 
 import pyCCsnifferOriginal
