@@ -108,6 +108,7 @@ def radioProgram(pkg, newGame = False):
 	#send code package over radio
 
 	global gunList
+	global setNewGame
 	xbee = XBee(serial.Serial(radioTarget, radioBaud))
 
 	pref='\x40\x06\x00'
@@ -125,7 +126,7 @@ def radioProgram(pkg, newGame = False):
 				x = xbee.send('tx', dest_addr=gun, data=c1)
 			time.sleep(0.5)
 
-	if newGame: 
+	if setNewGame: 
 		time.sleep(0.3)
 		newGame(gunList) 
 
