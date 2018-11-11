@@ -297,8 +297,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 	packetData = []
 
 	# Need to have packet captures
-	for _i in range(len(packetHandler.captures)):
-		packet = packetHandler.captures[0]
+	for packet in packetHandler.captures:
 		if len(packet.frame.msdu) < 5:
 			continue
 		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50:
