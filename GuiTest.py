@@ -22,6 +22,7 @@ import types
 import usb.core
 import usb.util
 import pdb
+import serial
 
 
 from xbee import XBee
