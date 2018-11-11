@@ -584,7 +584,6 @@ def quitGame():
 def main():
 	exitGame = False
 
-	'''
 	#TODO: CHECK SNIFFER LOADING
 	#Need to start packet Handeler here?
 	args = arg_parser()
@@ -608,8 +607,6 @@ def main():
 
 	snifferDev = CC2531EMK(handlerDispatcher, args.channel)
 	snifferDev.start()
-
-	'''
 
 	while not exitGame:
 		exitGame = mainScreen(None)
