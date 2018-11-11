@@ -126,10 +126,9 @@ def radioProgram(pkg, newGame = False):
 				x = xbee.send('tx', dest_addr=gun, data=c1)
 			time.sleep(0.5)
 
-	if newGame: 
-		newGame() 
+	newGame() 
 
-		pass
+	pass
 
 def endGame():
 	"""list of gun numbers (integers); if this is empty, then new game all guns"""
@@ -276,17 +275,15 @@ def LMG():
 	pass
 
 def TDM():
-	global setNewGame
 	command = ['\x07', '\xFF', '\x1C', '\x00', '\x00', '\x00', '\x00', '\x45', '\x00', '\x00', '\x00', '\x00', '\x1A', '\x00', '\x03', '\x05', '\x82', '\x00', '\x00', '\x00', '\x00']
 	cmd = ''.join(command)
-	radioProgram(cmd, setNewGame)
+	radioProgram(cmd)
 	pass
 
 def FFA():
-	global setNewGame
 	command = ['\x07', '\xFF', '\x1C', '\x00', '\x00', '\x00', '\x04', '\x45', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x03', '\x05', '\x6C', '\x00', '\x00', '\x00', '\x00']
 	cmd = ''.join(command)
-	radioProgram(cmd, setNewGame)
+	radioProgram(cmd)
 	pass
 
 def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
