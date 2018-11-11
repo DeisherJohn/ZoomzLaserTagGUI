@@ -301,7 +301,9 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 	# Need to have packet captures
 	for _i in range(len(packetHandler.captures)):
 		packet = packetHandler.captures[0]
-		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50 and len(packet.frame.msdu) > 4:
+		if len(packet.frame.msdu) < 5:
+			continue
+		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50:
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packetHandler.captures[0]
 
