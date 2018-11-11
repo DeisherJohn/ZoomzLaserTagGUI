@@ -35,10 +35,7 @@ from pyCCsnifferOriginal import SniffedPacket
 from pyCCsnifferOriginal import CapturedFrame
 from pyCCsnifferOriginal import CustomAssertFrame
 
-
 #inits
-
-
 pygame.init()
 
 
@@ -104,12 +101,6 @@ brightBlue = (0,0,255)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RADIO FUNCTIONS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def sendPacket(_destAddr, _packetPref, _packetData = None):
-	#ser = serial.Serial(radioTarget, redioBuad)
-	xbee = XBee(serial.Serial(radioTarget, redioBuad))
-
-
-	pass
 def radioProgram(pkg, newGame = False):
 	#send code package over radio
 
@@ -301,13 +292,13 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 	_blueScore = 0
 	_redScore = 0
 	packetData = []
-	''' Need to have packet captures
+	# Need to have packet captures
 	while packetHandler.captures:
 		packet = packetHandler.captures[0]
 		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50 and len(packet.frame.msdu) > 4:
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packet
-	'''
+		
 	if len(packetData) > 0:
 		packetData.sort()
 
@@ -320,7 +311,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 				if victim[kill] == victim[kill - 1] and abs(timeDeath[kill - 1]) < 100000:
 					#double kill found
 					continue #move to next loop
-				''' Need to work out how to kill base
+				#Need to work out how to kill base
 				if victim[kill] > largestGunNumber:
 					#this is a base kill
 					self.baseKill = True
@@ -330,7 +321,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 					else:
 						self.winner = 'blue'
 					continue
-				'''
 			#add kill to the passed in data Structs
 			killMatrix[int(victim[kill]), int(killer[kill])] += 1
 			killList[int(killer[kill])] += 1
