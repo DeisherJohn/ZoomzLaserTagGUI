@@ -303,6 +303,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packetHandler.captures[0]
 
+	print(packetData)
 	if len(packetData) > 0:
 		packetData.sort()
 
@@ -311,7 +312,9 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		victim = np.array(packetData)[:,0] # array of guns killed
 
 		print("looking at kill loop")
-		for kill in range(len(victim)):
+
+		for kill in range(len(killer)):
+			print(kill)
 			if kill > 0:
 				print("Killer:"  + str(killer[kill]))
 				print("Victim:"  + str(victim[kill]))
