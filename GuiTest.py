@@ -292,9 +292,12 @@ def FFA():
 
 def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 
+	global killMatrix
+	global killList
 	_blueScore = 0
 	_redScore = 0
 	packetData = []
+
 	# Need to have packet captures
 	for _i in range(len(packetHandler.captures)):
 		print(len(packetHandler.captures))
