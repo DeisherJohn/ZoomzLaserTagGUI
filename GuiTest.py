@@ -313,7 +313,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		victim = np.array(packetData)[:,0] # array of guns killed
 
 		print("looking at kill loop")
-		for kill in len(victim):
+		for kill in range(len(victim)):
 			if kill > 0:
 				if victim[kill] == victim[kill - 1] and abs(timeDeath[kill - 1]) < 100000:
 					#double kill found
