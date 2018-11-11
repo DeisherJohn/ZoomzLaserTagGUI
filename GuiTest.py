@@ -126,9 +126,8 @@ def radioProgram(pkg, newGame = False):
 				x = xbee.send('tx', dest_addr=gun, data=c1)
 			time.sleep(0.5)
 
-	if setNewGame: 
-		time.sleep(0.3)
-		newGame(gunList) 
+	if newGame: 
+		newGame() 
 
 		pass
 
@@ -285,7 +284,6 @@ def TDM():
 
 def FFA():
 	global setNewGame
-
 	command = ['\x07', '\xFF', '\x1C', '\x00', '\x00', '\x00', '\x04', '\x45', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x03', '\x05', '\x6C', '\x00', '\x00', '\x00', '\x00']
 	cmd = ''.join(command)
 	radioProgram(cmd, setNewGame)
