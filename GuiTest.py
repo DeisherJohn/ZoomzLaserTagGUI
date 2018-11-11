@@ -476,27 +476,7 @@ def gameTime(_window = None):
 	global killList
 	global snifferDev
 
-	#try opening sniffer here
-	args = arg_parser()
-	args.channel=int(12)
 
-	global packetHandler
-
-	packetHandler = PacketHandler()
-	packetHandler.enable()
-
-	if args.annotation is not None:
-		packetHandler.setAnnotation(args.annotation)
-
-	handlers = [packetHandler]
-
-	def handlerDispatcher(timestamp, macPDU):
-		if len(macPDU) > 0:
-			packet = SniffedPacket(macPDU, timestamp)
-			for handler in handlers:
-				handler.handleSniffedPacket(packet)
-
-	snifferDev = CC2531EMK(handlerDispatcher, args.channel)
 	snifferDev.start()
 	#end here
 
@@ -619,9 +599,29 @@ def quitGame():
 def main():
 	exitGame = False
 
+	#try opening sniffer here
+	args = arg_parser()
+	args.channel=int(12)
+
+	global packetHandler
+	
 	#TODO: CHECK SNIFFER LOADING
 	#Need to start packet Handeler here?
-	
+	packetHandler = PacketHandler()
+	packetHandler.enable()
+
+	if args.annotation is not None:
+		packetHandler.setAnnotation(args.annotation)
+
+	handlers = [packetHandler]
+
+	def handlerDispatcher(timestamp, macPDU):
+		if len(macPDU) > 0:
+			packet = SniffedPacket(macPDU, timestamp)
+			for handler in handlers:
+				handler.handleSniffedPacket(packet)
+
+	snifferDev = CC2531EMK(handlerDispatcher, args.channel)
 
 	while not exitGame:
 		exitGame = mainScreen(None)
