@@ -298,7 +298,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50 and len(packet.frame.msdu) > 4:
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packet
-		
+
 	if len(packetData) > 0:
 		packetData.sort()
 
@@ -463,6 +463,7 @@ def gameTime(_window = None):
 	blueScore = 0
 	redScore = 0
 
+	newGame()
 	startTime = pygame.time.get_ticks()
 	while not stopGame:
 		for event in pygame.event.get():
