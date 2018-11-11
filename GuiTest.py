@@ -5,7 +5,7 @@ import time
 import sys
 import os
 import numpy as np
-'''
+
 import argparse
 import binascii
 from datetime import datetime
@@ -34,7 +34,7 @@ from pyCCsnifferOriginal import CC2531EMK
 from pyCCsnifferOriginal import SniffedPacket
 from pyCCsnifferOriginal import CapturedFrame
 from pyCCsnifferOriginal import CustomAssertFrame
-'''
+
 
 #inits
 
