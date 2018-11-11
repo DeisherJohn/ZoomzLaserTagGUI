@@ -307,7 +307,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packetHandler.captures[0]
 
-	print(packetData)
 	if len(packetData) > 0:
 		packetData.sort()
 
@@ -316,7 +315,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		victim = np.array(packetData)[:,0] # array of guns killed
 
 		for kill in range(len(killer)):
-			print(kill)
 			if kill > 0:
 				if victim[kill] == victim[kill - 1] and abs(timeDeath[kill - 1]) < 100000:
 					#double kill found
@@ -379,7 +377,6 @@ def gunMenu(_window = None):
 
 	while settingGuns:
 		for event in pygame.event.get():
-			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 				mainScreen()
@@ -411,7 +408,6 @@ def gameMenu(_window = None):
 
 	while settingGame:
 		for event in pygame.event.get():
-			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 				mainScreen()
@@ -444,7 +440,6 @@ def scoreScreen(_window = None):
 	displayScore = True
 	while not stopGame:
 		for event in pygame.event.get():
-			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 				mainScreen()
@@ -483,7 +478,6 @@ def gameTime(_window = None):
 	startTime = pygame.time.get_ticks()
 	while not stopGame:
 		for event in pygame.event.get():
-			print(event)
 			if event.type == pygame.QUIT:
 				scoreScreen()
 
@@ -522,7 +516,6 @@ def StartGame(_window = None):
 	timer = 5
 	while settingUp:
 		for event in pygame.event.get():
-			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 		startScreen.fill(white)
@@ -555,7 +548,6 @@ def mainScreen(_window = None):
 	main = True
 	while main:
 		for event in pygame.event.get():
-			print(event)
 			if event.type == pygame.QUIT:
 				quit()
 				return True
