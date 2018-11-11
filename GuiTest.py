@@ -300,7 +300,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 
 	# Need to have packet captures
 	for _i in range(len(packetHandler.captures)):
-		print(len(packetHandler.captures))
 		packet = packetHandler.captures[0]
 		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50 and len(packet.frame.msdu) > 4:
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
@@ -313,8 +312,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 		timeDeath = np.diff(np.array(packetData)[:,2]) # time between kills
 		killer = np.array(packetData)[:,1] #array for gun killers
 		victim = np.array(packetData)[:,0] # array of guns killed
-
-		print("looking at kill loop")
 
 		for kill in range(len(killer)):
 			print(kill)
@@ -336,13 +333,12 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 			#add kill to the passed in data Structs
 			killMatrix[int(victim[kill]), int(killer[kill])] += 1
 			killList[int(killer[kill])] += 1
-		print("left kill loop")
 	#display the top players
 	sortedList = []
 	for gun in range(len(killList)):
 		sortedList.append((killList[gun], gun))
 
-	sortedList.sort()
+	sortedList.sort(reverse = True)
 	print(sortedList)
 	drawNormalText(_window, "- Top Players -", defFont, 20,300 + _offsetX,75 + _offsetY)
 	for x in range(5):
