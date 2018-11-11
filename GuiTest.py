@@ -239,7 +239,7 @@ def AR():
 	
 	pkg = ''.join(package)
 	radioProgram(pkg)
-	gunMenu()
+	mainScreen()
 	pass
 
 def SUB():
@@ -251,7 +251,8 @@ def SUB():
 		package = ['\x06', '\xFF', '\x02', '\x02', '\x04', '\x00', '\x05', '\x14', '\xC8', '\x02', '\x03', '\x06', '\x03', '\x01', '\x14', '\x00', '\x0B', '\x00', '\x00', '\x00', '\x00']
 	pkg = ''.join(package)
 	radioProgram(pkg)
-	gunMenu()
+	mainScreen()
+	pass
 
 def SNIPER():
 	global silencer
@@ -262,7 +263,7 @@ def SNIPER():
 		package = ['\x06', '\xFF', '\x02', '\x02', '\x04', '\x00', '\x0A', '\x05', '\xC8', '\x00', '\x03', '\x00', '\x05', '\x01', '\x14', '\x00', '\xFB', '\x00', '\x00', '\x00', '\x00']
 	pkg = ''.join(package)
 	radioProgram(pkg)
-	gunMenu()
+	mainScreen()
 	pass
 
 def LMG():
@@ -274,22 +275,21 @@ def LMG():
 		package = ['\x06', '\xFF', '\x02', '\x02', '\x04', '\x00', '\x04', '\x32', '\xC8', '\x02', '\x03', '\x03', '\x08', '\x01', '\x14', '\x00', '\x2A', '\x00', '\x00', '\x00', '\x00']
 	pkg = ''.join(package)
 	radioProgram(pkg)
-	gunMenu()
+	mainScreen()
 	pass
 
 def TDM():
 	command = ['\x07', '\xFF', '\x1C', '\x00', '\x00', '\x00', '\x00', '\x45', '\x00', '\x00', '\x00', '\x00', '\x1A', '\x00', '\x03', '\x05', '\x82', '\x00', '\x00', '\x00', '\x00']
 	cmd = ''.join(command)
 	radioProgram(cmd)
-	gameMenu()
-
+	mainScreen()
 	pass
 
 def FFA():
 	command = ['\x07', '\xFF', '\x1C', '\x00', '\x00', '\x00', '\x04', '\x45', '\x00', '\x00', '\x00', '\x00', '\x00', '\x00', '\x03', '\x05', '\x6C', '\x00', '\x00', '\x00', '\x00']
 	cmd = ''.join(command)
 	radioProgram(cmd)
-	gameMenu()
+	mainScreen()
 	pass
 
 def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
