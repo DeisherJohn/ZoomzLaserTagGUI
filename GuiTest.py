@@ -296,7 +296,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 	_redScore = 0
 	packetData = []
 	# Need to have packet captures
-	print("start of scoring")
 	for _i in range(len(packetHandler.captures)):
 		print(len(packetHandler.captures))
 		packet = packetHandler.captures[0]
@@ -304,7 +303,6 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
 		del packetHandler.captures[0]
 
-	print("parsed packet.CapturedFrame")
 	if len(packetData) > 0:
 		packetData.sort()
 
@@ -320,6 +318,7 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 					continue #move to next loop
 				#Need to work out how to kill base
 				if victim[kill] > largestGunNumber:
+					print("BASE KILL")
 					#this is a base kill
 					self.baseKill = True
 					if victim[kill] % 2 == 0:
@@ -434,6 +433,7 @@ def scoreScreen(_window = None):
 	pygame.display.set_caption(companyName)
 	stopGame = False
 
+	displayScore = True
 	while not stopGame:
 		for event in pygame.event.get():
 			print(event)
