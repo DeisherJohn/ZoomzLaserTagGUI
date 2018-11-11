@@ -303,12 +303,10 @@ def scoreDisplay(_window, _offsetX = 0, _offsetY = 0):
 			continue
 		if (packet.frame.msdu[2] == 32 or packet.frame.msdu[2] == 37) and packet.frame.msdu[4] < 50:
 			packetData.append([packet.frame.msdu[3], packet.frame.msdu[4], packet.frame.timestamp])
-		del packetHandler.captures[0]
 
 	if len(packetData) > 0:
 		print(packetData)
 		packetData.sort()
-		print(packetData)
 
 		timeDeath = np.diff(np.array(packetData)[:,2]) # time between kills
 		killer = np.array(packetData)[:,1] #array for gun killers
@@ -605,7 +603,7 @@ def main():
 
 	global packetHandler
 	global snifferDev
-	
+
 	#TODO: CHECK SNIFFER LOADING
 	#Need to start packet Handeler here?
 	packetHandler = PacketHandler()
